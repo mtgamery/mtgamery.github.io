@@ -3,7 +3,7 @@ $(function() {
 	loadContent();
 
 	$("#chapter1").click(function(){
-		window.location.replace("Chapter1.html");
+		window.location.replace("chapter1/Chapter1.html");
 	});
 });
 
