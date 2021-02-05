@@ -17,6 +17,10 @@ video {
 	height: 480;
 }
 
+div#content {
+	text-align: center;
+}
+
 .img-link {
 	width: 852;
 	height: 480;
