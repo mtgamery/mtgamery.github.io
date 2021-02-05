@@ -6,6 +6,6 @@ $(function() {
 	});
 
 	$("#next").click(function(){
-		window.location.href("Scene1.html");
+		window.location.href = "Scene1.html";
 	});
 });
