@@ -7,7 +7,7 @@ $(function() {
 	});
 
 	$("#chapter1").click(function(){
-		window.location.href = "chapter1/Chapter1.html";
+		window.location.href = "codecases/chapter1/Chapter1.html";
 	});
 });
 
