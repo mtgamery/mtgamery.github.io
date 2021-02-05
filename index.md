@@ -1,11 +1,11 @@
 <html>
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://github.com/mtgamery/mtgamery.github.io/blob/main/index.js"></script>
+		<script src="https://raw.githubusercontent.com/mtgamery/mtgamery.github.io/main/index.js"></script>
 		<style>
 	      @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
 	    </style>
-		<link rel="stylesheet" href="https://github.com/mtgamery/mtgamery.github.io/blob/main/main.css">
+		<link rel="stylesheet" href="https://raw.githubusercontent.com/mtgamery/mtgamery.github.io/main/main.css">
 	</head>
 	<body>
 		<div id="content">
