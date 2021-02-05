@@ -13,13 +13,13 @@ button {
 }
 
 video {
-	width: 852;
-	height: 480;
+	width: 852px;
+	height: 480px;
 }
 
 .img-link {
-	width: 852;
-	height: 480;
+	width: 852px;
+	height: 480px;
 	cursor: pointer;
 }
 
@@ -27,30 +27,30 @@ video {
 	position: absolute;
 	margin: auto;
 	top: 10; left: 0; right: 0;
-	width: 852;
-	height: 480;
+	width: 852px;
+	height: 480px;
 }
 
 .container-scene {
 	position: absolute;
 	margin: auto;
 	top: 0; left: 0; right: 0;
-	width: 852;
-	height: 480;
+	width: 852px;
+	height: 480px;
 }
 
 .img-scene {
 	position: absolute;
 	margin: auto;
 	top: 10; left: 0; right: 0;
-	width: 852;
-	height: 480;
+	width: 852px;
+	height: 480px;
 }
 
 .btn-scene{
 	position: absolute;
 	margin: auto;
-	top: 520; left: 0; right: 0;
+	top: 520px; left: 0; right: 0;
 }
 
 .no-outline {
@@ -60,9 +60,9 @@ video {
 .subtitle {
 	position: absolute;
 	margin: auto;
-	top: 400; left: 0; right: 0;
-	width: 852;
-	height: 60;
+	top: 400px; left: 0; right: 0;
+	width: 852px;
+	height: 60px;
 	z-index: 1000;
 	color: #ffffff;
 	-webkit-text-stroke: 1px #000000;
