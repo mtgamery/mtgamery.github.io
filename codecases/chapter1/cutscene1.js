@@ -1,11 +1,11 @@
 $(function() {
     $("#next").hide();
 
-    $('#intro').bind('ended', function() {
+    $('#cutscene').bind('ended', function() {
 		$("#next").show();
 	});
 
 	$("#next").click(function(){
-		window.location.href = "scene1.html";
+		window.location.href = "scene2.html";
 	});
 });

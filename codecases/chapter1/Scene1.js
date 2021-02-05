@@ -63,6 +63,10 @@ $(function() {
 	    	}
 	    }
 	});
+
+	$("#next").click(function(){
+		window.location.href = "cutscene1.html";
+	});
 });
 
 var locations = [];
