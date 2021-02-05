@@ -1,0 +1,83 @@
+body {
+	color: #ffffff;
+	background-color: #000000;
+	font-size: 30px;
+	font-family: 'Anonymous Pro', monospace;
+}
+
+button {
+	font-size: 30px;
+	font-family: 'Anonymous Pro', monospace;
+	padding: 20px;
+	cursor: pointer;
+}
+
+video {
+	width: 852;
+	height: 480;
+}
+
+.img-link {
+	width: 852;
+	height: 480;
+	cursor: pointer;
+}
+
+.img-title {
+	position: absolute;
+	margin: auto;
+	top: 10; left: 0; right: 0;
+	width: 852;
+	height: 480;
+}
+
+.container-scene {
+	position: absolute;
+	margin: auto;
+	top: 0; left: 0; right: 0;
+	width: 852;
+	height: 480;
+}
+
+.img-scene {
+	position: absolute;
+	margin: auto;
+	top: 10; left: 0; right: 0;
+	width: 852;
+	height: 480;
+}
+
+.btn-scene{
+	position: absolute;
+	margin: auto;
+	top: 520; left: 0; right: 0;
+}
+
+.no-outline {
+	outline: none;
+}
+
+.subtitle {
+	position: absolute;
+	margin: auto;
+	top: 400; left: 0; right: 0;
+	width: 852;
+	height: 60;
+	z-index: 1000;
+	color: #ffffff;
+	-webkit-text-stroke: 1px #000000;
+	text-shadow: -1px 1px 1px #000000,
+				  1px 1px 1px #000000,
+				  1px -1px 0 #000000,
+				  -1px -1px 0 #000000;
+}
+
+div#content {
+	text-align: center;
+}
+
+area:focus{
+        border: none;
+        outline-style: none; 
+        -moz-outline-style:none;  
+      }

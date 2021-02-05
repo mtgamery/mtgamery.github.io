@@ -1,0 +1,53 @@
+<html>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="jquery.imagemapster.min.js"></script>
+	<script src="Scene1.js"></script>
+	<style>
+      @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+    </style>
+	<link rel="stylesheet" href="main.css">
+<body>
+	<div id="content">
+		<img id="title" class="img-title"/>
+		<button id="start" class="btn-scene" type="button">Click To Start</button>
+		<img id="desk" class="img-scene" usemap="#deskMap"/>
+    	<map name="deskMap">
+	     	<area id="deskMap_Map" shape="poly" coords="30,210,327,191,393,368,25,400" href="#">
+	    	<area id="deskMap_Folder" shape="poly" coords="579,172,770,208,740,450,466,369" href="#">
+	    </map>
+	    <div id="popup_Map" class="container-scene">
+	    	<img id="map" class="img-scene" usemap="#portviewMap"/>
+	    	<map name="portviewMap">
+		    	<area id="Waller" class="map-location" shape="circle" coords="876,245,25" href="#">
+		    	<area id="Silva" class="map-location" shape="circle" coords="553,375,25" href="#">
+		    	<area id="Garcia" class="map-location" shape="circle" coords="882,375,25" href="#">
+		    	<area id="Gregg" class="map-location" shape="circle" coords="1119,510,25" href="#">
+		    	<area id="Jones" class="map-location" shape="circle" coords="825,526,25" href="#">
+		    	<area id="Chambers" class="map-location" shape="circle" coords="706,770,25" href="#">
+		    </map>
+		    <img id="map2" class="img-scene"/>
+	    </div>
+	    <div id="popup_Folder">
+	    	<img id="folder" class="img-scene"/>
+	    </div>
+	    <button id="back" class="btn-scene" type="button"><< Back</button>
+	    <button id="next" class="btn-scene" type="button">Next >></button>
+	    <div id="subtitle" class="subtitle"></div>
+	 </div>
+	<audio id="rain1" preload="auto">
+		<source src="https://docs.google.com/uc?export=download&id=1wamIaJJS68B6Q2uSWNx82hEQ0_NlizHa" type="audio/mpeg">
+	</audio>
+	<audio id="rain2" preload="auto">
+		<source src="https://docs.google.com/uc?export=download&id=1wamIaJJS68B6Q2uSWNx82hEQ0_NlizHa" type="audio/mpeg">
+	</audio>
+	<audio id="pageflip1" preload="auto">
+		<source src="https://docs.google.com/uc?export=download&id=1fJHFEbKee2Laf0y437ti53WzV7xHuA3f" type="audio/mpeg">
+	</audio>
+	<audio id="pageflip2" preload="auto">
+		<source src="https://docs.google.com/uc?export=download&id=1cdGa4r9PDOm2FGhqmfLtMgj8-jEUyDkc" type="audio/mpeg">
+	</audio>	
+	<audio id="correct" preload="auto">
+		<source src="https://docs.google.com/uc?export=download&id=17zcYPrkeUHXMjbc7sRLbz0qeGS1eOr9j" type="audio/mpeg">
+	</audio>
+</body>
+</html>
