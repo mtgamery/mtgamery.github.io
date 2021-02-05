@@ -30,32 +30,11 @@ $(function() {
 		$("#title").fadeOut(3000, function(){
 			showSubtitle("These must be the houses that were hit", 4000, 0);
 			showSubtitle("and the notes that were left behind.", 4000, 5000);
+			setTimeout(function(){
+				addEventHandlers();
+			}, 10000)
 		});
 	});
-
-	$("#deskMap_Map").click(function(e){
-		e.stopImmediatePropagation();
-		e.preventDefault();
-		playSound("pageflip1")
-		$("#popup_Map").fadeIn(500);
-		$("#back").fadeIn(500);
-    });
-
-	$("#deskMap_Folder").click(function(e){
-		e.stopImmediatePropagation();
-		e.preventDefault();
-		playSound("pageflip2")
-		$("#popup_Folder").fadeIn(500);
-		$("#back").fadeIn(500);
-    });
-
-    $("#back").click(function(e){
-		e.stopImmediatePropagation();
-		e.preventDefault();
-		$("#popup_Map").fadeOut(500);
-		$("#popup_Folder").fadeOut(500);
-		$("#back").fadeOut(500);
-    });
 
     $('#map').mapster({
 	    fillOpacity: 0.75,
@@ -88,6 +67,32 @@ $(function() {
 
 var locations = [];
 var options = 'GreggJonesGarciaChambersSilvaWaller';
+
+function addEventHandlers(){
+	$("#deskMap_Map").click(function(e){
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		playSound("pageflip1")
+		$("#popup_Map").fadeIn(500);
+		$("#back").fadeIn(500);
+    });
+
+	$("#deskMap_Folder").click(function(e){
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		playSound("pageflip2")
+		$("#popup_Folder").fadeIn(500);
+		$("#back").fadeIn(500);
+    });
+
+    $("#back").click(function(e){
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		$("#popup_Map").fadeOut(500);
+		$("#popup_Folder").fadeOut(500);
+		$("#back").fadeOut(500);
+    });
+}
 
 function checkAnswer(){
 	var answer = locations.join('');
