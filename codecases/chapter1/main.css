@@ -17,6 +17,14 @@ video {
 	height: 480px;
 }
 
+.img {
+	position: absolute;
+	margin: auto;
+	top: 0px; left: 0px; right: 0px;
+	width: 852px;
+	height: 480px;
+}
+
 .img-link {
 	width: 852px;
 	height: 480px;
@@ -26,15 +34,7 @@ video {
 .img-title {
 	position: absolute;
 	margin: auto;
-	top: 10; left: 0; right: 0;
-	width: 852px;
-	height: 480px;
-}
-
-.container-scene {
-	position: absolute;
-	margin: auto;
-	top: 0; left: 0; right: 0;
+	top: 10px; left: 0px; right: 0px;
 	width: 852px;
 	height: 480px;
 }
@@ -42,7 +42,7 @@ video {
 .img-scene {
 	position: absolute;
 	margin: auto;
-	top: 10; left: 0; right: 0;
+	top: 10px; left: 0px; right: 0px;
 	width: 852px;
 	height: 480px;
 }
@@ -50,7 +50,7 @@ video {
 .btn-scene{
 	position: absolute;
 	margin: auto;
-	top: 520px; left: 0; right: 0;
+	top: 520px; left: 0px; right: 0px;
 }
 
 .no-outline {
@@ -60,7 +60,7 @@ video {
 .subtitle {
 	position: absolute;
 	margin: auto;
-	top: 400px; left: 0; right: 0;
+	top: 400px; left: 0px; right: 0px;
 	width: 852px;
 	height: 60px;
 	z-index: 1000;
@@ -68,8 +68,8 @@ video {
 	-webkit-text-stroke: 1px #000000;
 	text-shadow: -1px 1px 1px #000000,
 				  1px 1px 1px #000000,
-				  1px -1px 0 #000000,
-				  -1px -1px 0 #000000;
+				  1px -1px 0px #000000,
+				  -1px -1px 0px #000000;
 }
 
 div#content {

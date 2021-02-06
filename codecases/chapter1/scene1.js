@@ -142,7 +142,7 @@ function loadContent(){
 	$("#desk").attr("src","https://docs.google.com/uc?export=download&id=1SSpU00w_IXtxvBTKU8LVk8GMlcJU7FtG" );
 	$("#map").attr("src","https://docs.google.com/uc?export=download&id=1VbWgjKDBR4EyF7I0beZUNphGT79eL1Bl");
 	$("#map2").attr("src","https://docs.google.com/uc?export=download&id=1Bq0dMFvfEyJgXQ3vDUHJKBIptqt0Hcnn");
-	$("#folder").attr("src","https://docs.google.com/uc?export=download&id=1UrSQVyiCILVh_c1Khuw8qbM8aKiofW6n");
+	$("#folder").attr("src","https://docs.google.com/uc?export=download&id=1B0UU4-wazeSQGgmt5kupyD17MWZbOT9Y");
 }
 
 function showSubtitle(text, duration, delay) {
