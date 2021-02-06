@@ -24,3 +24,13 @@ div#content {
 .img-link {
 	cursor: pointer;
 }
+
+.game-link {
+	cursor: pointer;
+	width: 360px;
+	height: 206px;
+	border: 2px dashed transparent;
+}
+	.game-link:hover{
+		border: 2px dashed #999;
+	}
