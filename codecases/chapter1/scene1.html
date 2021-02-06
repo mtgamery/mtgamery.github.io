@@ -11,14 +11,14 @@
 </head>
 <body>
 	<div id="content">
-		<img id="title" class="img-title"/>
-		<button id="start" class="btn-scene" type="button">Click To Start</button>
-		<img id="desk" class="img-scene" usemap="#deskMap"/>
+		<img id="title" class="img-title" style="display: none;"/>
+		<button id="start" class="btn-scene" type="button" style="display: none;">Click To Start</button>
+		<img id="desk" class="img-scene" usemap="#deskMap" style="display: none;"/>
     	<map name="deskMap">
 	     	<area id="deskMap_Map" shape="poly" coords="30,210,327,191,393,368,25,400">
 	    	<area id="deskMap_Folder" shape="poly" coords="579,172,770,208,740,450,466,369">
 	    </map>
-	    <div id="popup_Map" class="img-scene">
+	    <div id="popup_Map" class="img-scene" style="display: none;">
 	    	<img id="map" class="img" usemap="#portviewMap"/>
 	    	<map name="portviewMap">
 		    	<area id="Waller" class="map-location" shape="circle" coords="410,104,10" href="#">
@@ -28,14 +28,14 @@
 		    	<area id="Jones" class="map-location" shape="circle" coords="386,234,10" href="#">
 		    	<area id="Chambers" class="map-location" shape="circle" coords="330,348,10" href="#">
 		    </map>
-		    <img id="map2" class="img"/>
+		    <img id="map2" class="img" style="display: none;"/>
 	    </div>
-	    <div id="popup_Folder" class="img-scene">
+	    <div id="popup_Folder" class="img-scene" style="display: none;">
 	    	<img id="folder" class="img"/>
 	    </div>
-	    <button id="back" class="btn-scene" type="button"><< Back</button>
-	    <button id="next" class="btn-scene" type="button">Next >></button>
-	    <div id="subtitle" class="subtitle"></div>
+	    <button id="back" class="btn-scene" type="button" style="display: none;"><< Back</button>
+	    <button id="next" class="btn-scene" type="button" style="display: none;">Next >></button>
+	    <div id="subtitle" class="subtitle" style="display: none;"></div>
 	 </div>
 	<audio id="rain1" preload="auto">
 		<source src="https://docs.google.com/uc?export=download&id=1wamIaJJS68B6Q2uSWNx82hEQ0_NlizHa" type="audio/mpeg">

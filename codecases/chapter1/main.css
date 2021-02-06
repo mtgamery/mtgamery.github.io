@@ -12,7 +12,7 @@ button {
 	cursor: pointer;
 }
 
-video {
+video, iframe {
 	width: 852px;
 	height: 480px;
 }

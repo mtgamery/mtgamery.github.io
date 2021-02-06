@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<script src="https://www.youtube.com/iframe_api"></script>	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
 	<script src="intro.js"></script>
 	<style>
@@ -10,11 +11,12 @@
 </head>
 <body>
 	<div id="content">
-		<video id="intro" class="no-outline" controls preload="auto">
+		<!--<video id="intro" class="no-outline" controls preload="auto">
 			<source src="https://docs.google.com/uc?export=download&id=1fI9dL4BAXMnCYGSYpioLhPhZek8cPAo9" type="video/mp4">
-		</video>
+		</video>-->
+		<div id="player"></div>
 		<br/>
-		<button id="next" type="button">Next >></button>
+		<button id="next" type="button" style="display: none;">Next >></button>
 	</div>
 </body>
 </html>

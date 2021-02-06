@@ -1,6 +1,5 @@
 $(function() {
     
-	init();
 	loadContent();
 
 	$("#title").fadeIn(5000, function(){
@@ -123,18 +122,6 @@ function correct() {
 			$("#next").fadeIn(3000);
 		},4000);
     });
-}
-
-function init(){
-	$("#desk").hide();
-	$("#start").hide();
-	$("#title").hide();
-	$(".subtitle").hide();
-	$("#popup_Map").hide();
-	$("#popup_Folder").hide();
-	$("#back").hide();
-	$("#next").hide();
-	$("#map2").hide();
 }
 
 function loadContent(){

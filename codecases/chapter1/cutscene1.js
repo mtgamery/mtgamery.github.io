@@ -1,11 +1,31 @@
+
+var player;
+
 $(function() {
-    $("#next").hide();
-
-    $('#cutscene').bind('ended', function() {
-		$("#next").show();
-	});
-
 	$("#next").click(function(){
 		window.location.href = "scene2.html";
 	});
 });
+
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+      	height: '480',
+      	width: '852',
+      	videoId: 'rsBpsuo-BdA',
+      	playerVars: { 'rel': 0 },
+      	events: {
+        	'onReady': onPlayerReady,
+        	'onStateChange': onPlayerStateChange
+  		}
+	});
+}
+
+function onPlayerReady(event) {
+	event.target.playVideo();
+}
+
+function onPlayerStateChange(event) {
+	if (event.data === 0) {
+		$("#next").fadeIn(100);
+	}
+}
