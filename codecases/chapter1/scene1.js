@@ -31,6 +31,8 @@ $(function() {
 			showSubtitle("and the notes that were left behind.", 4000, 5000);
 			setTimeout(function(){
 				addEventHandlers();
+				$("#deskMap_Map").addClass("cursor-pointer");
+    			$("#deskMap_Folder").addClass("cursor-pointer");
 			}, 10000)
 		});
 	});
@@ -119,7 +121,7 @@ function correct() {
 	$("#map2").fadeIn(3000, function() {
 		showSubtitle("Hmm... this looks promising.", 4000, 0);
 		setTimeout(function(){
-			$("#next").fadeIn(3000);
+			$("#next").fadeIn(1000);
 		},4000);
     });
 }
@@ -140,9 +142,4 @@ function showSubtitle(text, duration, delay) {
 			.delay(duration)
 			.fadeOut(500);
 	}, delay);
-}
-
-function playSound(id){
-	var audio = document.getElementById(id);
-	audio.play();
 }

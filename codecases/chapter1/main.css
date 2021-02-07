@@ -53,6 +53,10 @@ video, iframe {
 	top: 520px; left: 0px; right: 0px;
 }
 
+.cursor-pointer {
+	cursor: pointer;
+}
+
 .no-outline {
 	outline: none;
 }

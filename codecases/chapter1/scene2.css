@@ -1,0 +1,46 @@
+#padlock {
+	position: absolute;
+	margin: auto;
+	top: 20px; left: 0px; right: 0px;
+	height: 400px;
+}
+
+#lockWrapper{
+	position: absolute;
+	margin: auto;
+	top: 270px; left: 0px; right: 0px;
+	width: 200px;
+	padding: 0 20px 0 8px;
+	border-radius: 7px;
+	height: 120px;
+	border: none;
+	overflow: hidden;
+}
+
+.lockDial{
+	height: 120px;
+	width: 40px;
+	margin-left: 10px;
+	background: -webkit-linear-gradient(top, #000 0%,#111 9%,#222 18%,#444 55%,#222 82%,#111 91%,#000 100%);
+	background: linear-gradient(to bottom, #000 0%,#111 9%,#222 18%,#444 55%,#222 82%,#111 91%,#000 100%);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+	float: left;
+	position: relative;
+	cursor: move;
+}
+
+#lockWrapper .lockDial ul{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	list-style: none;
+	font-size: 35px;
+	line-height: 60px;
+	color: #ddd;
+	text-shadow: 0 -2px 0 #222;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;
+	transition: box-shadow .45s linear, color .25s linear;
+	-webkit-transition: box-shadow .45s linear, color .25s linear;
+}
