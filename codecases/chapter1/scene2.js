@@ -87,7 +87,7 @@ $(function() {
 				correct();
 			}
 	        else {
-	        	// do something
+	        	playSoundAsync("click");
 	        }
 		}
 	});
