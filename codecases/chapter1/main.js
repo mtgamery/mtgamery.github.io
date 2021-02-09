@@ -1,5 +1,7 @@
 
 function playSound(id){
 	var audio = document.getElementById(id);
-	audio.play();
+	if (audio !== null){
+		audio.play();
+	}
 }

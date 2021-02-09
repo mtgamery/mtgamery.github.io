@@ -45,6 +45,7 @@ video, iframe {
 	top: 10px; left: 0px; right: 0px;
 	width: 852px;
 	height: 480px;
+	z-index: 1000;
 }
 
 .btn-scene{

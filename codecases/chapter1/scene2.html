@@ -9,42 +9,16 @@
 	<link rel="stylesheet" href="scene2.css">
 	<link rel="icon" type="image/png" href="../../favicon.png"/>
 	<style>
-    	@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
-    	@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:700);
-		#frontdoor{
-	        display: block;
-	        margin-left: auto;
-	        margin-right: auto;
-	        margin-top: 10px;
-      	}
-		:root:before {
-			content: '';
-			display: block;
-			width: 100%;
-			height: 100%;
-			position: fixed;
-			pointer-events: none;
-			background: radial-gradient(
-			  circle 10vmax at var(--cursorX) var(--cursorY),
-			  rgba(0,0,0,0) 0%,
-			  rgba(0,0,0,.5) 50%,
-			  rgba(0,0,0,.95) 100%
-			)
-		}
-    </style>
+		@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+	</style>
 </head>
 <body>
-	<div class="blackscreen"><span>Click to start</span></div>
+	<div id="blackscreenStart" class="blackscreen"><span>Click to start</span></div>
+	<div id="blackscreenBackground" class="blackscreen" style="display: none;"></div>
 	<img id="frontdoor" usemap="#frontdoorMap"/>
 	<map name="frontdoorMap">
 	    <area id="padlockArea" class="cursor-pointer" shape="circle" coords="425,260,10" href="#">
 	</map>
-	<audio id="rain1" preload="auto">
-		<source src="https://docs.google.com/uc?export=download&id=1qq1kRXAnB6bl_cCGx7hMvHYjdqQpuwRI" type="audio/mpeg">
-	</audio>
-	<audio id="rain2" preload="auto">
-		<source src="https://docs.google.com/uc?export=download&id=1qq1kRXAnB6bl_cCGx7hMvHYjdqQpuwRI" type="audio/mpeg">
-	</audio>
 	<div id="divPadlock" class="img-scene" style="display: none;">
 		<img id="padlock"/>
 		<div id="lockWrapper">
@@ -65,8 +39,17 @@
 	</div>
 	<button id="back" class="btn-scene" type="button" style="display: none;"><< Back</button>
 	<button id="next" class="btn-scene" type="button" style="display: none;">Next >></button>
+	<audio id="rain1" preload="auto">
+		<source src="../media/rain.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="rain2" preload="auto">
+		<source src="../media/rain.mp3" type="audio/mpeg">
+	</audio>
 	<audio id="correct" preload="auto">
-		<source src="https://docs.google.com/uc?export=download&id=17zcYPrkeUHXMjbc7sRLbz0qeGS1eOr9j" type="audio/mpeg">
+		<source src="../media/correct.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="unlock" preload="auto">
+		<source src="../media/unlock.mp3" type="audio/mpeg">
 	</audio>
 </body>
 </html>
