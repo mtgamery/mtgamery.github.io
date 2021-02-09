@@ -94,8 +94,8 @@ $(function() {
 });
 
 function loadContent(){
-	$("#frontdoor").attr("src","images/abandoned_home.jpg");
-	$("#padlock").attr("src","images/padlock.png");
+	$("#frontdoor").attr("src","images/AbandonedHome.jpg");
+	$("#padlock").attr("src","images/Padlock.png");
 }
 
 function addEventHandlers(){
@@ -130,14 +130,14 @@ function updateSpotlight(e){
 }
 
 function correct() {
-	$("#frontdoor").attr("src","images/abandoned_home_unlocked.jpg")
+	$("#frontdoor").attr("src","images/AbandonedHomeUnlocked.jpg")
 	$("#frontdoor").attr("usemap", "");
 	playSound("unlock");
 	setTimeout(function() {
 		playSound("correct");
 	},1000);
 	$("#back").hide();
-	$("#padlock").attr("src","images/padlock_open.png");
+	$("#padlock").attr("src","images/PadlockOpen.png");
 	setTimeout(function(){
 		$("#next").fadeIn(1000);
 		$("#divPadlock").fadeOut(500);

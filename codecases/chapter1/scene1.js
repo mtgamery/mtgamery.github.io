@@ -127,11 +127,11 @@ function correct() {
 }
 
 function loadContent(){
-	$("#title").attr("src","https://docs.google.com/uc?export=download&id=12r0yr0xorGZvdDkGBs4CMIS160-3LLzU");
-	$("#desk").attr("src","https://docs.google.com/uc?export=download&id=1SSpU00w_IXtxvBTKU8LVk8GMlcJU7FtG" );
-	$("#map").attr("src","https://docs.google.com/uc?export=download&id=1VbWgjKDBR4EyF7I0beZUNphGT79eL1Bl");
-	$("#map2").attr("src","https://docs.google.com/uc?export=download&id=1Bq0dMFvfEyJgXQ3vDUHJKBIptqt0Hcnn");
-	$("#folder").attr("src","https://docs.google.com/uc?export=download&id=1B0UU4-wazeSQGgmt5kupyD17MWZbOT9Y");
+	$("#title").attr("src","images/Title.png");
+	$("#desk").attr("src","images/Desk.jpg" );
+	$("#map").attr("src","images/PortviewMap.jpg");
+	$("#map2").attr("src","images/PortviewMapArrow.jpg");
+	$("#folder").attr("src","images/CallingCards.jpg");
 }
 
 function showSubtitle(text, duration, delay) {
