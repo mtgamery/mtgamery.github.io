@@ -30,7 +30,7 @@ $(function() {
 	updateSpotlight();
 
 	var comboArray = [0, 0, 0, 0];
-	var combination = [1, 1, 0, 0];
+	var combination = [1, 0, 8, 1];
 		
 	var gridIncrement = $( ".lockDial ul" ).css('line-height').replace('px', '') / 2;
 	var numNums = $( ".lockDial:eq(0) ul li" ).length;
@@ -96,6 +96,7 @@ $(function() {
 function loadContent(){
 	$("#frontdoor").attr("src","images/AbandonedHome.jpg");
 	$("#padlock").attr("src","images/Padlock.png");
+	$("#article").attr("src","images/Article.png");
 }
 
 function addEventHandlers(){
@@ -107,10 +108,20 @@ function addEventHandlers(){
 		$("#back").fadeIn(500);
     });
 
+    $("#articleArea").click(function(e){
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		playSound("pageflip");
+		$("#blackscreenBackground").fadeIn(500);
+		$("#article").fadeIn(500);
+		$("#back").fadeIn(500);
+    });
+
     $("#back").click(function(e){
 		e.stopImmediatePropagation();
 		e.preventDefault();
 		$("#divPadlock").fadeOut(500);
+		$("#article").fadeOut(500);
 		$("#blackscreenBackground").fadeOut(500);
 		$("#back").fadeOut(500);
     });
