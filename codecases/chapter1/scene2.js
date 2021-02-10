@@ -87,10 +87,14 @@ $(function() {
 				correct();
 			}
 	        else {
-	        	playSoundAsync("click");
+	        	click.play();
 	        }
 		}
 	});
+});
+
+var click = new Howl({
+	src: ["../media/click.mp3"]
 });
 
 function loadContent(){
