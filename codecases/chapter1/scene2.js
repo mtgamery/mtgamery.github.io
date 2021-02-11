@@ -6,24 +6,19 @@ $(function() {
     document.addEventListener('mousemove', updateSpotlight);
     document.addEventListener('touchmove', updateSpotlight);
 
-	var rain1Audio = document.getElementById("rain1");
-	var rain2Audio = document.getElementById("rain2");
-
-	rain1Audio.addEventListener('timeupdate', function(){
-    	if ( this.currentTime > this.duration - 5 )
-    	{
-	        rain2Audio.play();
-    	}
+    rainSound.on('fade', function(){
+  		var rain = rainSound2.play();
+  		rainSound2.fade(0.9, 1, 57000, rain);
 	});
-	rain2Audio.addEventListener('timeupdate', function(){
-    	if ( this.currentTime > this.duration - 5 )
-    	{
-	        rain1Audio.play();
-    	}
+
+	rainSound2.on("fade", function() {
+		var rain = rainSound.play();
+		rainSound.fade(0.9, 1, 57000, rain);
 	});
 
 	$("#blackscreenStart").click(function(){
-		rain1Audio.play();
+		var rain = rainSound.play();
+		rainSound.fade(0.9, 1, 57000, rain);
 		$(this).fadeOut(300);
 	});
 
@@ -87,14 +82,34 @@ $(function() {
 				correct();
 			}
 	        else {
-	        	click.play();
+	        	clickSound.play();
 	        }
 		}
 	});
 });
 
-var click = new Howl({
+var rainSound = new Howl({
+	src: ["../media/rain.mp3"]
+});
+
+var rainSound2 = new Howl({
+	src: ["../media/rain.mp3"]
+});
+
+var clickSound = new Howl({
 	src: ["../media/click.mp3"]
+});
+
+var pageFlipSound = new Howl({
+	src: ["../media/pageflip2.mp3"]
+});
+
+var unlockSound = new Howl({
+	src: ["../media/unlock.mp3"]
+});
+
+var correctSound = new Howl({
+	src: ["../media/correct.mp3"]
 });
 
 function loadContent(){
@@ -115,10 +130,18 @@ function addEventHandlers(){
     $("#articleArea").click(function(e){
 		e.stopImmediatePropagation();
 		e.preventDefault();
-		playSound("pageflip");
+		pageFlipSound.play();
 		$("#blackscreenBackground").fadeIn(500);
 		$("#article").fadeIn(500);
 		$("#back").fadeIn(500);
+    });
+
+    $("#doorArea").click(function(e){
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		$("#frontdoor").attr("src","images/AbandonedHomeOpen.jpg")
+		$("#doorArea").remove();
+		$("#next").fadeIn(1000);
     });
 
     $("#back").click(function(e){
@@ -146,15 +169,17 @@ function updateSpotlight(e){
 
 function correct() {
 	$("#frontdoor").attr("src","images/AbandonedHomeUnlocked.jpg")
-	$("#frontdoor").attr("usemap", "");
-	playSound("unlock");
+	$("#padlockArea").remove();
+	$("#articleArea").remove();
+	$("#doorArea").attr("coords","319,197,540,428");
+
+	unlockSound.play();
 	setTimeout(function() {
-		playSound("correct");
+		correctSound.play();
 	},1000);
 	$("#back").hide();
 	$("#padlock").attr("src","images/PadlockOpen.png");
 	setTimeout(function(){
-		$("#next").fadeIn(1000);
 		$("#divPadlock").fadeOut(500);
 		$("#blackscreenBackground").fadeOut(500);
 	},3000);

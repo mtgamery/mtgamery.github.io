@@ -6,24 +6,19 @@ $(function() {
 		$("#start").fadeIn(1000);
 	});
 
-    var rain1Audio = document.getElementById("rain1");
-	var rain2Audio = document.getElementById("rain2");
-
-	rain1Audio.addEventListener('timeupdate', function(){
-    	if ( this.currentTime > this.duration - 5 )
-    	{
-	        rain2Audio.play();
-    	}
+    rainSound.on('fade', function(){
+  		var rain = rainSound2.play();
+  		rainSound2.fade(0.9, 1, 57000, rain);
 	});
-	rain2Audio.addEventListener('timeupdate', function(){
-    	if ( this.currentTime > this.duration - 5 )
-    	{
-	        rain1Audio.play();
-    	}
+
+	rainSound2.on("fade", function() {
+		var rain = rainSound.play();
+		rainSound.fade(0.9, 1, 57000, rain);
 	});
 
 	$("#start").click(function(){
-		rain1Audio.play();
+		var rain = rainSound.play();
+		rainSound.fade(0.9, 1, 57000, rain);
 		$(this).hide();
 		$("#desk").fadeIn(3000);
 		$("#title").fadeOut(3000, function(){
@@ -73,11 +68,31 @@ $(function() {
 var locations = [];
 var options = 'GreggJonesGarciaChambersSilvaWaller';
 
+var rainSound = new Howl({
+	src: ["../media/rain_indoor.mp3"]
+});
+
+var rainSound2 = new Howl({
+	src: ["../media/rain_indoor.mp3"]
+});
+
+var pageflip1Sound = new Howl({
+	src: ["../media/pageflip1.mp3"]
+});
+
+var pageflip2Sound = new Howl({
+	src: ["../media/pageflip2.mp3"]
+});
+
+var correctSound = new Howl({
+	src: ["../media/correct.mp3"]
+});
+
 function addEventHandlers(){
 	$("#deskMap_Map").click(function(e){
 		e.stopImmediatePropagation();
 		e.preventDefault();
-		playSound("pageflip1")
+		pageflip1Sound.play();
 		$("#popup_Map").fadeIn(500);
 		$("#back").fadeIn(500);
     });
@@ -85,7 +100,7 @@ function addEventHandlers(){
 	$("#deskMap_Folder").click(function(e){
 		e.stopImmediatePropagation();
 		e.preventDefault();
-		playSound("pageflip2")
+		pageflip2Sound.play();
 		$("#popup_Folder").fadeIn(500);
 		$("#back").fadeIn(500);
     });
@@ -115,7 +130,7 @@ function checkAnswer(){
 
 function correct() {
 	setTimeout(function() {
-		playSound("correct");
+		correctSound.play();
 	},1000);
 	$("#back").hide();
 	$("#map2").fadeIn(3000, function() {
