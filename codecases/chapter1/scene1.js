@@ -59,10 +59,6 @@ $(function() {
 	    	}
 	    }
 	});
-
-	$("#next").click(function(){
-		window.location.href = "cutscene1.html";
-	});
 });
 
 var locations = [];
@@ -112,6 +108,10 @@ function addEventHandlers(){
 		$("#popup_Folder").fadeOut(500);
 		$("#back").fadeOut(500);
     });
+
+    $("#next").click(function(){
+		window.location.href = "cutscene1.html";
+	});
 }
 
 function checkAnswer(){

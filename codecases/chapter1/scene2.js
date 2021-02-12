@@ -67,6 +67,10 @@ function addEventHandlers(){
 		$("#blackscreenBackground").fadeOut(500);
 		$("#back").fadeOut(500);
     });
+
+    $("#next").click(function(){
+		window.location.href = "cutscene2.html";
+	});
 }
 
 function correct() {
