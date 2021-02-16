@@ -97,7 +97,7 @@ area:focus{
       }
 
 .blackscreen {
-	cursor: pointer;
+	cursor: default;
 	text-align: center;
 	vertical-align: middle;
 	background-color: #000;

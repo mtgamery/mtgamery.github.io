@@ -1,4 +1,12 @@
 
+$("#blackscreenStart").click(function(){
+	//var rain = rainSound.play();
+	//rainSound.fade(0.9, 1, 57000, rain);
+	$(this).fadeOut(3000, function(){
+		window.addEventListener( 'mousemove', onMouseMove, false );
+	});
+});
+
 const sceneWidth = 852;
 const sceneHeight = 480;
 
@@ -141,6 +149,7 @@ clickableObjects.push(door);
 
 const gltfLoader = new THREE.GLTFLoader();
 const tableModel = 'models/table/scene.gltf';
+
 gltfLoader.load(tableModel, (gltf) => {    
 	const table = gltf.scene;    
     table.scale.set(225, 225, 225);
@@ -174,8 +183,6 @@ function onWindowResize(){
 
 const mouse = new THREE.Vector2();
 
-window.addEventListener( 'mousemove', onMouseMove, false );
-
 function onMouseMove( event ) {
 	var rect = renderer.domElement.getBoundingClientRect();
 	mouse.x = ( ( event.clientX - rect.left ) / ( rect.right - rect.left ) ) * 2 - 1;
@@ -184,6 +191,7 @@ function onMouseMove( event ) {
 }
 
 renderer.domElement.addEventListener('pointerdown', function (event) {
+    $('html,body').css('cursor','default');
     mouseX = event.clientX;
     mouseY = event.clientY;
 }, false);
@@ -195,13 +203,23 @@ renderer.domElement.addEventListener('pointerup', function (event) {
     }
 }, false);
 
+var viewLevel = 0;
+var level0Objects = ["door", "table", "tv"];
+var level1Objects = ["tv"];
+var levelObjectList = [];
+levelObjectList.push(level0Objects);
+levelObjectList.push(level1Objects);
+
 function highlightObject() {
 	raycaster.setFromCamera(mouse, camera);
 	var intersects = raycaster.intersectObjects(clickableObjects); //array
 	if (intersects.length > 0) {
 		intersect = intersects[0];
 		var objectName = intersect.object.name;
-		$('html,body').css('cursor','pointer');
+		var list = levelObjectList[viewLevel];
+		if (list.indexOf(objectName) !== -1) {
+			$('html,body').css('cursor','pointer');
+		}
 	}
 	else {
 		intersect.object.material.color.set(0xffffff);
@@ -216,33 +234,11 @@ function onSceneClick(event) {
 	if (intersects.length > 0) {
 		intersect = intersects[0];
 		var objectName = intersect.object.name;
-		if (objectName === "door")
-		{
-			if (currentObject !== "door"){
-				currentObject = "door";
-				clickDoor();
-			}
-		}
-		else if (objectName === "table"){
-			if (currentObject !== "table"){
-				currentObject = "table";
-				clickTable();
-			}
-		}
-		else if (objectName === "tv"){
-			if (currentObject === "table"){
-				toggleVideo();
-			}
-			else{
-				currentObject = "table";
-				clickTable();
-			}
-		}
+		clickObject(objectName);
 	}
 }
 
-function toggleVideo()
-{
+function toggleVideo() {
 	if (!video.paused){
 		video.pause();
 		tv.visible = false;
@@ -253,7 +249,34 @@ function toggleVideo()
 	}
 }
 
-function clickDoor(){
+function clickObject(objectName) {
+	
+	if (viewLevel === 0){
+		if (objectName === "door") {
+			viewLevel = 1;
+			clickDoor();
+		}
+		else if (objectName === "table") {
+			viewLevel = 1;
+			clickTable();
+		}
+		else if (objectName === "tv") {
+			viewLevel = 1;
+			clickTable();
+		}
+
+		if (currentObject !== objectName) {
+			currentObject = objectName;
+		}
+	}
+	else if (viewLevel === 1) {
+		if (objectName === "tv") {
+			toggleVideo();
+		}
+	}
+}
+
+function clickDoor() {
 	
 	var delay = 0.5;
 
@@ -298,7 +321,7 @@ function clickDoor(){
 	}, delay * 1000 + 500);
 }
 
-function clickTable(){
+function clickTable() {
 	
 	var delay = 0.5;
 
@@ -343,22 +366,21 @@ function clickTable(){
 	}, delay * 1000 + 500);
 }
 
-
 $("#back").click(goBack);
 
 function toggleBackButton(isShow) {
-  if (isShow === true) {
-    $("#back").show();
-  } 
-  else {
-    $("#back").hide();
-  }
+	if (isShow === true) {
+		$("#back").show();
+	} 
+	else {
+		$("#back").hide();
+	}
 }
 
 function goBack(){
 	toggleBackButton(false);
 
-	if (currentObject === "door"){		
+	if (currentObject === "door") {		
 		gsap.to( controls.target, {
 			delay: 0.1,
 			duration: 0.5,
@@ -381,7 +403,7 @@ function goBack(){
 		});
 	}
 
-	if (currentObject === "table"){		
+	if (currentObject === "table" || currentObject === "tv") {		
 		gsap.to( controls.target, {
 			delay: 0.1,
 			duration: 0.5,
@@ -404,25 +426,23 @@ function goBack(){
 		});
 	}
 
+	viewLevel = 0;
 	currentObject = "";
 	controls.enabled = true;
 }
 
-function animate()
-{
+function animate() {
 	requestAnimationFrame(animate);
 
 	render();
 	update();
 };
 
-function render() 
-{	
+function render() {	
 	renderer.render( scene, camera );
 }
 
-function update()
-{
+function update() {
 	controls.update();
 }
 
