@@ -13,7 +13,6 @@ const cameraDistance = 300;
 const eyeLevel = -200;
 
 var clickableObjects = [];
-const gltfLoader = new THREE.GLTFLoader(loadingManager);
 
 var mouseX = 0;
 var mouseY = 0;
@@ -75,8 +74,9 @@ function initializeScene(){
 
 function addObjects(){
 	var floorTexture = new THREE.TextureLoader(loadingManager).load( "images/Woodfloor.jpg" );
-	var wallTexture = new THREE.TextureLoader(loadingManager).load( "images/Wallpaper.jpg" );;
-	var doorTexture = new THREE.TextureLoader(loadingManager).load( "images/Door.jpg" );;
+	var wallTexture = new THREE.TextureLoader(loadingManager).load( "images/Wallpaper.jpg" );
+	var doorTexture = new THREE.TextureLoader(loadingManager).load( "images/Door.jpg" );
+	var tableGLTF = new THREE.GLTFLoader(loadingManager);
 
 	wallTexture.wrapS = THREE.RepeatWrapping;
 	wallTexture.wrapT = THREE.RepeatWrapping;
@@ -154,7 +154,7 @@ function addObjects(){
 
 	// Table
 	var tableModel = 'models/table/scene.gltf';
-	gltfLoader.load(tableModel, (gltf) => {    
+	tableGLTF.load(tableModel, (gltf) => {    
 		const table = gltf.scene;    
 	    table.scale.set(225, 225, 225);
 	    table.position.set(-350, -125, 0);
