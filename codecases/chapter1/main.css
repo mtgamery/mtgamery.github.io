@@ -63,6 +63,24 @@ canvas {
 	top: 500px; left: 0px; right: 0px;
 }
 
+.progress-bar{
+	width: 200px;
+	height: 20px;
+	position: absolute;
+	margin: auto;
+	border: 1px solid #fff;
+	background-color: transparent;
+	top: 200px; left: 0px; right: 0px;
+	z-index: 1500;
+}
+
+.progress-bar > div {
+	width: 0px;
+	height: 20px;
+	border: none;
+	background-color: #00ff00;
+}
+
 .cursor-pointer {
 	cursor: pointer;
 }
@@ -107,7 +125,7 @@ area:focus{
 	width: 852px;
 	height: 480px;
 	z-index: 1000;
-	opacity: 0.8;
+	opacity: 0.9;
 }
 .blackscreen span {
   margin: 0;
