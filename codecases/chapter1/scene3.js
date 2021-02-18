@@ -5,7 +5,7 @@ const sceneHeight = 480;
 const loadingManager = new THREE.LoadingManager();
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, sceneWidth / sceneHeight, 0.1, 10000);
+const camera = new THREE.PerspectiveCamera(45, sceneWidth / sceneHeight, 0.1, 10000);
 const renderer = new THREE.WebGLRenderer();
 const spotLight = new THREE.SpotLight( 0xffffff );
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -24,7 +24,7 @@ var angle = 0;
 
 var viewLevel = 0;
 var level0Objects = ["door", "table", "tv"];
-var level1Objects = ["tv"];
+var level1Objects = ["tv", "greenButton", "redButton"];
 var levelObjectList = [];
 levelObjectList.push(level0Objects);
 levelObjectList.push(level1Objects);
@@ -47,7 +47,7 @@ function initializeScene(){
 	spotLight.position.set( 0, 900, 0);
 	spotLight.target.position.set( 0, 0, 0 );
 	spotLight.penumbra = 0.9;
-	spotLight.intensity = 2.5;
+	spotLight.intensity = 3;
 	spotLight.angle = Math.PI / 4;
 
 	spotLight.shadow.camera.fov = 50;
@@ -169,6 +169,35 @@ function addObjects(){
 
 	    scene.add(table);
 	});
+
+	// Button Device
+	var boxGeometry = new THREE.BoxGeometry( 50, 30, 80 );
+	var boxMaterial = new THREE.MeshPhongMaterial( {color: 0x202020} );
+	var box = new THREE.Mesh( boxGeometry, boxMaterial );
+	box.position.set(-300, -50, 0);
+	box.receiveShadow = true;
+	box.castShadow = true;
+	scene.add( box );
+
+	var greenButtonGeometry = new THREE.CylinderGeometry( 10, 10, 5, 50 );
+	var greenButtonMaterial = new THREE.MeshPhongMaterial( {color: 0x00ff00} );
+	var greenButton = new THREE.Mesh( greenButtonGeometry, greenButtonMaterial );
+	greenButton.name = "greenButton";
+	greenButton.position.set(-300, -33, 17);
+	greenButton.receiveShadow = true;
+	greenButton.castShadow = true;
+	scene.add( greenButton );
+	clickableObjects.push(greenButton);
+
+	var redButtonGeometry = new THREE.CylinderGeometry( 10, 10, 5, 50 );
+	var redButtonMaterial = new THREE.MeshPhongMaterial( {color: 0xff0000} );
+	var redButton = new THREE.Mesh( redButtonGeometry, redButtonMaterial );
+	redButton.name = "redButton";
+	redButton.position.set(-300, -33, -17);
+	redButton.receiveShadow = true;
+	redButton.castShadow = true;
+	scene.add( redButton );
+	clickableObjects.push(redButton);
 }
 
 function addEventHandlers(){
@@ -230,6 +259,9 @@ function highlightObject() {
 		var list = levelObjectList[viewLevel];
 		if (list.indexOf(objectName) !== -1) {
 			$('html,body').css('cursor','pointer');
+		}
+		else {
+			$('html,body').css('cursor','default');
 		}
 	}
 	else {
