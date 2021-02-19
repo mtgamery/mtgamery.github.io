@@ -22,6 +22,16 @@ video, iframe {
 	height: 480px;
 }
 
+::selection {
+    color: none;
+    background: none;
+}
+/* For Mozilla Firefox */
+::-moz-selection {
+    color: none;
+    background: none;
+}
+
 .img {
 	position: absolute;
 	margin: auto;
@@ -66,7 +76,7 @@ video, iframe {
 	margin: auto;
 	border: 1px solid #fff;
 	background-color: transparent;
-	top: 100px; left: 0px; right: 0px;
+	top: 125px; left: 0px; right: 0px;
 	z-index: 1500;
 }
 

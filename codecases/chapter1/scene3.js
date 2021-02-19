@@ -6,7 +6,7 @@ const loadingManager = new THREE.LoadingManager();
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, sceneWidth / sceneHeight, 0.1, 10000);
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 const spotLight = new THREE.SpotLight( 0xffffff );
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 const cameraDistance = 300;
@@ -24,10 +24,12 @@ var angle = 0;
 
 var viewLevel = 0;
 var level0Objects = ["door", "table", "tv"];
-var level1Objects = ["tv", "greenButton", "redButton"];
+var level1Objects = ["greenButton", "redButton"];
 var levelObjectList = [];
 levelObjectList.push(level0Objects);
 levelObjectList.push(level1Objects);
+
+const buttonSound = new Howl({ src: ["../media/button.mp3"] });
 
 $(function() {
 
@@ -40,7 +42,6 @@ $(function() {
 
 function initializeScene(){
 	renderer.setSize(sceneWidth, sceneHeight);
-	renderer.antialias = true;
 	renderer.shadowMap.enabled = true;
 	document.body.appendChild(renderer.domElement);
 
@@ -75,7 +76,7 @@ function initializeScene(){
 function addObjects(){
 	var floorTexture = new THREE.TextureLoader(loadingManager).load( "images/Woodfloor.jpg" );
 	var wallTexture = new THREE.TextureLoader(loadingManager).load( "images/Wallpaper.jpg" );
-	var doorTexture = new THREE.TextureLoader(loadingManager).load( "images/Door.jpg" );
+	var doorGLTF = new THREE.GLTFLoader(loadingManager);
 	var tableGLTF = new THREE.GLTFLoader(loadingManager);
 
 	wallTexture.wrapS = THREE.RepeatWrapping;
@@ -92,7 +93,8 @@ function addObjects(){
 
 	var floorMaterial = new THREE.MeshPhongMaterial( { map: floorTexture, side: THREE.DoubleSide } );
 	var wallMaterial = new THREE.MeshPhongMaterial( { map: wallTexture, side: THREE.DoubleSide } );
-	var doorMaterial = new THREE.MeshPhongMaterial( { map: doorTexture, side: THREE.DoubleSide });
+	var doorMaterial = new THREE.MeshLambertMaterial( { color: 0x333333} );
+	var blackMaterial = new THREE.MeshLambertMaterial( { color: 0x000000 } );
 
 	var floorGeometry = new THREE.BoxGeometry( 1020, 1020, 20 );
 	var floor = new THREE.Mesh( floorGeometry, floorMaterial );
@@ -127,15 +129,6 @@ function addObjects(){
 	frontwall.position.z = 500;
 	scene.add(frontwall);
 
-	// Door
-	var doorGeometry = new THREE.BoxGeometry( 215, 450, 20 );
-	var door = new THREE.Mesh( doorGeometry, doorMaterial );
-	door.name = "door";
-	door.position.y = eyeLevel + 235;
-	door.position.z = -495;
-	scene.add(door);
-	clickableObjects.push(door);
-
 	// TV
 	var tvCase = new THREE.Mesh(
 		new THREE.BoxGeometry(325, 185, 10),
@@ -152,10 +145,36 @@ function addObjects(){
 	scene.add(tv);
 	clickableObjects.push(tv);
 
+	// Door
+	var doorModel = 'models/door/scene.gltf';
+	doorGLTF.load(doorModel, (gltf) => {    
+		var door = gltf.scene;
+		door.scale.set(2, 2, 2);
+	    door.position.set(0, 11 + eyeLevel, -485);
+	    
+	    var animations = gltf.animations;
+
+	    door.traverse(function(child){ 
+		    if (child.isMesh) {
+		    	child.name = "door";
+		        child.castShadow = true;
+		        clickableObjects.push(child)
+		    }
+		});
+
+	    scene.add(door);
+	});
+
+	var doorwayGeometry = new THREE.BoxGeometry( 180, 410, 20 );
+	var doorway = new THREE.Mesh( doorwayGeometry, blackMaterial );
+	doorway.position.y = 200 + eyeLevel;
+	doorway.position.z = -499;
+	scene.add(doorway);
+
 	// Table
 	var tableModel = 'models/table/scene.gltf';
 	tableGLTF.load(tableModel, (gltf) => {    
-		const table = gltf.scene;    
+		var table = gltf.scene;    
 	    table.scale.set(225, 225, 225);
 	    table.position.set(-350, -125, 0);
 	    
@@ -215,7 +234,7 @@ function addEventHandlers(){
 	 	$("#blackscreen").fadeOut(1000);
 	 	$("#blackscreenStart span").fadeIn(1000);
 	 	$("#blackscreenStart").click(function(){
-	 		$(this).fadeOut(2000);
+	 		$(this).fadeOut(1000);
 	 	});
 	};
 
@@ -280,7 +299,7 @@ function onSceneClick(event) {
 	}
 }
 
-function toggleVideo() {
+function toggleVideo(){
 	if (!video.paused){
 		video.pause();
 		tv.visible = false;
@@ -291,34 +310,37 @@ function toggleVideo() {
 	}
 }
 
-function clickObject(objectName) {
+function clickObject(objectName){
 	
 	if (viewLevel === 0){
-		if (objectName === "door") {
+		if (objectName === "door"){
 			viewLevel = 1;
 			clickDoor();
 		}
-		else if (objectName === "table") {
+		else if (objectName === "table"){
 			viewLevel = 1;
 			clickTable();
 		}
-		else if (objectName === "tv") {
+		else if (objectName === "tv"){
 			viewLevel = 1;
 			clickTable();
 		}
 
-		if (currentObject !== objectName) {
+		if (currentObject !== objectName){
 			currentObject = objectName;
 		}
 	}
-	else if (viewLevel === 1) {
-		if (objectName === "tv") {
-			toggleVideo();
+	else if (viewLevel === 1){
+		if (objectName === "greenButton"){
+			clickGreenButton();
+		}
+		else if (objectName === "redButton"){
+			clickRedButton();
 		}
 	}
 }
 
-function clickDoor() {
+function clickDoor(){
 	
 	var delay = 0.5;
 
@@ -327,7 +349,7 @@ function clickDoor() {
 		Math.round(camera.position.z) === cameraDistance){
 		delay = 0.1;
 	}
-	gsap.to( camera.position, {
+	gsap.to( camera.position,{
 		duration: delay,
 		x: 0,
 		y: 0,
@@ -336,23 +358,23 @@ function clickDoor() {
 			camera.updateProjectionMatrix();
 		}
 	});
-	gsap.to( controls.target, {
+	gsap.to( controls.target,{
 		delay: delay,
 		duration: 0.5,
 		x: 0,
 		y: 34,
 		z: -500,
-		onUpdate: function () {	
+		onUpdate: function (){	
 			controls.update();
 		}
 	});
-	gsap.to( camera.position, {
+	gsap.to( camera.position,{
 		delay: delay,
 		duration: 0.5,
 		x: 0,
 		y: 34,
 		z: 0,
-		onUpdate: function () {	
+		onUpdate: function (){	
 			camera.updateProjectionMatrix();
 		}
 	});
@@ -363,7 +385,7 @@ function clickDoor() {
 	}, delay * 1000 + 500);
 }
 
-function clickTable() {
+function clickTable(){
 	
 	var delay = 0.5;
 
@@ -372,22 +394,22 @@ function clickTable() {
 		Math.round(camera.position.z) === 0){
 		delay = 0.1;
 	}
-	gsap.to( camera.position, {
+	gsap.to( camera.position,{
 		duration: delay,
 		x: cameraDistance,
 		y: 0,
 		z: 0,
-		onUpdate: function () {	
+		onUpdate: function (){	
 			camera.updateProjectionMatrix();
 		}
 	});
-	gsap.to( controls.target, {
+	gsap.to( controls.target,{
 		delay: delay,
 		duration: 0.5,
 		x: -500,
 		y: 45,
 		z: 0,
-		onUpdate: function () {	
+		onUpdate: function (){	
 			controls.update();
 		}
 	});
@@ -397,7 +419,7 @@ function clickTable() {
 		x: 0,
 		y: 0,
 		z: 0,
-		onUpdate: function () {	
+		onUpdate: function (){	
 			camera.updateProjectionMatrix();
 		}
 	});
@@ -408,7 +430,45 @@ function clickTable() {
 	}, delay * 1000 + 500);
 }
 
-function toggleBackButton(isShow) {
+function clickGreenButton(){
+	buttonSound.play();
+	var button = scene.getObjectByName("greenButton");
+	gsap.to( button.position, {
+			delay: 0.02,
+			duration: 0.05,
+			x: -300,
+			y: -37,
+			z: 17
+		});
+	gsap.to( button.position, {
+			delay: 0.07,
+			duration: 0.1,
+			x: -300,
+			y: -33,
+			z: 17
+		});
+}
+
+function clickRedButton(){
+	buttonSound.play();
+	var button = scene.getObjectByName("redButton");
+	gsap.to( button.position, {
+			delay: 0.02,
+			duration: 0.05,
+			x: -300,
+			y: -37,
+			z: -17
+		});
+	gsap.to( button.position, {
+			delay: 0.07,
+			duration: 0.1,
+			x: -300,
+			y: -33,
+			z: -17
+		});
+}
+
+function toggleBackButton(isShow){
 	if (isShow === true) {
 		$("#back").show();
 	} 
@@ -420,14 +480,14 @@ function toggleBackButton(isShow) {
 function goBack(){
 	toggleBackButton(false);
 
-	if (currentObject === "door") {		
+	if (currentObject === "door"){		
 		gsap.to( controls.target, {
 			delay: 0.1,
 			duration: 0.5,
 			x: 0,
 			y: 0,
 			z: 0,
-			onUpdate: function () {	
+			onUpdate: function (){	
 				controls.update();
 			}
 		});
@@ -437,7 +497,7 @@ function goBack(){
 			x: 0,
 			y: 0,
 			z: cameraDistance,
-			onUpdate: function () {	
+			onUpdate: function (){	
 				camera.updateProjectionMatrix();
 			}
 		});
@@ -450,7 +510,7 @@ function goBack(){
 			x: 0,
 			y: 0,
 			z: 0,
-			onUpdate: function () {	
+			onUpdate: function (){	
 				controls.update();
 			}
 		});
@@ -460,7 +520,7 @@ function goBack(){
 			x: cameraDistance,
 			y: 0,
 			z: 0,
-			onUpdate: function () {	
+			onUpdate: function (){	
 				camera.updateProjectionMatrix();
 			}
 		});
@@ -471,17 +531,17 @@ function goBack(){
 	controls.enabled = true;
 }
 
-function animate() {
+function animate(){
 	requestAnimationFrame(animate);
 
 	render();
 	update();
 };
 
-function render() {	
+function render(){	
 	renderer.render( scene, camera );
 }
 
-function update() {
+function update(){
 	controls.update();
 }
