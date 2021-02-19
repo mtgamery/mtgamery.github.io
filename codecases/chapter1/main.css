@@ -22,10 +22,6 @@ video, iframe {
 	height: 480px;
 }
 
-canvas {
-	width: 100%;
-}
-
 .img {
 	position: absolute;
 	margin: auto;
@@ -70,7 +66,7 @@ canvas {
 	margin: auto;
 	border: 1px solid #fff;
 	background-color: transparent;
-	top: 200px; left: 0px; right: 0px;
+	top: 100px; left: 0px; right: 0px;
 	z-index: 1500;
 }
 

@@ -12,7 +12,11 @@ function onYouTubeIframeAPIReady() {
       	height: '480',
       	width: '852',
       	videoId: 'uKGSlNo8d8Y',
-      	playerVars: { 'rel': 0 },
+      	playerVars: { 
+      		'rel': 0,
+      		'controls': 1,
+      		'autoplay': 1
+      	},
       	events: {
         	'onReady': onPlayerReady,
         	'onStateChange': onPlayerStateChange
@@ -25,7 +29,7 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
-	if (event.data === 0) {
+	if (event.data === YT.PlayerState.ENDED) {
 		$("#next").fadeIn(100);
 	}
 }

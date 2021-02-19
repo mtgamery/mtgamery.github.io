@@ -215,7 +215,7 @@ function addEventHandlers(){
 	 	$("#blackscreen").fadeOut(1000);
 	 	$("#blackscreenStart span").fadeIn(1000);
 	 	$("#blackscreenStart").click(function(){
-	 		$(this).fadeOut(3000);
+	 		$(this).fadeOut(2000);
 	 	});
 	};
 
