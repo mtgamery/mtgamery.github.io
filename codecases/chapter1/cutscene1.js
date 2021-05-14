@@ -29,7 +29,7 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
-	if (event.data === 0) {
+	if (event.data === YT.PlayerState.ENDED) {
 		$("#next").fadeIn(100);
 	}
 }
